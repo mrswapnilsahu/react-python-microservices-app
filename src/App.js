@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+import { photos } from "./data";
+
+import Gallery from "./component/Gallery";
+
+import { SortableContainer } from "react-sortable-hoc";
+import { arrayMoveImmutable } from "array-move";
 
 function App() {
+
+  /**
+   * Below state will hold the list of photos
+   */
+  const [items, setItems] = useState(photos);
+
+  /**
+   * Return the gallery component wrapped under the sortable container
+   */
+  const SortableGallery = SortableContainer(({ items }) => (
+    <Gallery items={items} />
+  ));
+
+  /**
+   * This method will rearrage the items after changing the photos order 
+   */
+  const onChangeOrder = ({ from, to }) =>
+    setItems(arrayMoveImmutable(items, from, to));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Sortable gallery</h1>
+      <div className="sortable-gallery">
+        <div className="serv">
+          <SortableGallery items={items} onSortEnd={onChangeOrder} axis={"xy"} />
+        </div>
+      </div>
     </div>
   );
 }
