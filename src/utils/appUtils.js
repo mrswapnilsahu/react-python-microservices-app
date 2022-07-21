@@ -4,12 +4,15 @@
  * @param {*} items The array with the item to move
  * @param {*} from The index of item to move
  * @param {*} to The index of where to move the item
- * @returns 
+ * @returns items
  */
  export const swapElement = (items, from, to) => {
-    const b = items[from];
+    const temp = items[from];
     items[from] = items[to];
-    items[from] = b;
-    console.log(items)
+    items[to] = temp;
     return items;
+}
+
+export const updatePosition = () => {
+    
 }

@@ -6,7 +6,7 @@ import { photos } from "./data";
 import Gallery from "./component/Gallery";
 
 import { SortableContainer } from "react-sortable-hoc";
-import { arrayMoveImmutable } from "array-move";
+import { swapElement } from "./utils/appUtils";
 
 function App() {
 
@@ -25,8 +25,8 @@ function App() {
   /**
    * This method will rearrage the items after changing the photos order 
    */
-  const onChangeOrder = ({ from, to }) =>
-    setItems(arrayMoveImmutable(items, from, to));
+  const onChangeOrder = ({ oldIndex, newIndex }) =>
+    setItems(swapElement(items, oldIndex, newIndex));
 
   return (
     <div className="App">
