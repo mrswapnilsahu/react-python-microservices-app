@@ -26,3 +26,13 @@ export const updatePosition = (items, fromPosition, toPosition) => {
     items[toPosition].position = temp.position;
     return items;
 }
+
+/**
+ * Compare two objects and return boolean
+ * @param {*} obj1 object you want to compare
+ * @param {*} obj2 object you want to compare with
+ * @returns {boolean}
+ */
+export const compareObjects = (obj1, obj2) => {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
