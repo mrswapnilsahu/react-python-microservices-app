@@ -18,6 +18,13 @@ body {
   justify-content: center;
 }
 
+.card {
+  width: 320px;
+  height: 400px;
+  position: relative;
+  box-shadow: 0 0.5rem 1em rgb(0 0 0 / 15%);
+}
+
 .serv {
   max-width: 1000px;
 }
@@ -26,6 +33,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
+  gap: 10px
 }
 
 .serv ul li {
