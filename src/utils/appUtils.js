@@ -13,6 +13,16 @@
     return items;
 }
 
-export const updatePosition = () => {
-    
+/**
+ * Change the item position to a new position
+ * @param {*} items The array with the items
+ * @param {*} fromPosition The index of the item you want to change the position
+ * @param {*} toPosition The index of the item you want to change the position too
+ * @returns items
+ */
+export const updatePosition = (items, fromPosition, toPosition) => {
+    const temp = {...items[fromPosition]};
+    items[fromPosition].position = items[toPosition].position;
+    items[toPosition].position = temp.position;
+    return items;
 }
