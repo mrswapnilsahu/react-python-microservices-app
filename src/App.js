@@ -8,7 +8,7 @@ import Gallery from "./component/Gallery";
 import { SortableContainer } from "react-sortable-hoc";
 import { compareObjects, swapElement, updatePosition } from "./utils/appUtils";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import useFetch from "./hooks/useFetch";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
 
