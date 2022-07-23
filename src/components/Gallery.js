@@ -2,10 +2,9 @@ import Photo from './Photo';
 import { SortableElement } from "react-sortable-hoc";
 
 export default function Gallery (props) {
-
-    const { items } = props;
+    const { items, setSelectedImage } = props;
     const SortablePhoto = SortableElement(item => {
-        return <Photo {...item} />
+        return <Photo setSelectedImage={setSelectedImage} {...item} />
     });
     return <ul>
         {items.map((element, i) => {
