@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-sortable-gallery-app/static/css/main.c325e3d5.css",
-    "main.js": "/react-sortable-gallery-app/static/js/main.0d8a799b.js",
+    "main.js": "/react-sortable-gallery-app/static/js/main.7cae1e7f.js",
     "index.html": "/react-sortable-gallery-app/index.html",
     "main.c325e3d5.css.map": "/react-sortable-gallery-app/static/css/main.c325e3d5.css.map",
-    "main.0d8a799b.js.map": "/react-sortable-gallery-app/static/js/main.0d8a799b.js.map"
+    "main.7cae1e7f.js.map": "/react-sortable-gallery-app/static/js/main.7cae1e7f.js.map"
   },
   "entrypoints": [
     "static/css/main.c325e3d5.css",
-    "static/js/main.0d8a799b.js"
+    "static/js/main.7cae1e7f.js"
   ]
 }
