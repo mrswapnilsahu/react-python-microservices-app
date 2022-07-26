@@ -9,9 +9,7 @@ export default function Photo({ item, setSelectedImage }) {
 
     return <div className="image-card">
         <p className="image-title">{item.title}</p>
-        <button className="image-container" onClick={() => handleImageClick(item.src)}>
-            <img src={item.src} alt={item.title} onLoad={() => setIsLoading(false)} />
-            {isLoading && <span className="spinner"></span>}
-        </button>
+        <img src={item.src} alt={item.title} onLoad={() => setIsLoading(false)} onClick={() => handleImageClick(item.src)}/>
+        {isLoading && <span className="spinner"></span>}
     </div>
 }

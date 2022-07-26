@@ -34,5 +34,25 @@ export const updatePosition = (items, fromPosition, toPosition) => {
  * @returns {boolean}
  */
 export const compareObjects = (obj1, obj2) => {
-    return JSON.stringify(obj1) === JSON.stringify(obj2);
+  if((obj1 && obj1.length) && (obj2 && obj2.length)) {
+    return JSON.stringify(obj1) !== JSON.stringify(obj2);
+  } 
+  return false;
+}
+
+/**
+ * Async function to post data
+ * @param {string} url url you want to send request to
+ * @param {object} data object you want to send with the req
+ * @returns {JSON} object object with response from the server
+ */
+export async function postData(url = '', data = {}) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return response.json();
 }

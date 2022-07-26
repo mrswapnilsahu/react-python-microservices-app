@@ -38,7 +38,12 @@ body {
   width: 320px;
   height: 400px;
   position: relative;
-  box-shadow: 0 0.5rem 1em rgb(0 0 0 / 15%);
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
 }
 
 /* Spinner styles */
@@ -72,12 +77,7 @@ body {
 .image-title {
   font-size: 1.2rem;
   font-weight: 500;
-}
-
-.image-container {
-  background: none;
-  border: none;
-  z-index: 2;
+  text-align: left;
 }
 
 /* Modal styles */
@@ -97,4 +97,56 @@ body {
   margin: 60px auto;
   box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
   border: 3px solid white;
+}
+
+/* Toast styles */
+.toast {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1rem;
+  width: 10vw;
+  height: auto;
+  padding: 10px;
+  background-color: #e2e2e2;
+  color: #000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.toast .toast-header {
+  color: rgb(53, 53, 53);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #d4d4d4;
+}
+
+.toast-header .last-saved {
+  color: grey;
+  font-weight: 500;
+}
+
+.toast .toast-msg {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 0.5rem;
+}
+
+.toast .spinner {
+  position: unset;
+  margin: unset;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #000;
+  border-bottom-color: transparent; 
 }

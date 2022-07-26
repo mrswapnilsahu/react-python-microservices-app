@@ -7,7 +7,7 @@ export default function Gallery (props) {
         return <Photo setSelectedImage={setSelectedImage} {...item} />
     });
     return <ul>
-        {items.map((element, i) => {
+        { items && items.map((element, i) => {
             return <SortablePhoto index={i} sortIndex={element.position} item={element} key={`item-${i}`} />
         })}
         

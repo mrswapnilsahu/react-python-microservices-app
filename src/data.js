@@ -1,27 +1,32 @@
 export const photos = [
     {
-      src: "https://source.unsplash.com/2ShvY8Lf6l0/300x300",
-      title: "Bank Draft",
+      src: "https://media.giphy.com/media/LLsUNd14gwSkSLYTcR/giphy.gif",
+      type: "young-&-broke",
+      title: "Young & broke",
       position: 0
     },
     {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/300x300",
-      title: "Bill of Lading",
+      src: "https://media.giphy.com/media/uBTWyINWTrWz6/giphy.gif",
+      type: "tokyo-nights",
+      title: "Tokyo nights",
       position: 1
     },
     {
-      src: "https://source.unsplash.com/qDkso9nvCg0/300x300",
-      title: "Invoice",
+      src: "https://media.giphy.com/media/9zExs2Q2h1EHfE4P6G/giphy.gif",
+      type: "crusing-through-time",
+      title: "Crusing through time",
       position: 2
     },
     {
-        src: "https://source.unsplash.com/iecJiKe_RNg/300x300",
-        title: "Bank Draft 2",
+        src: "https://media.giphy.com/media/SSFfVBJ9EbF9DIZHEj/giphy.gif",
+        type: "sanji-x-moist-cigarette",
+        title: "Sanji x moist cigarette",
         position: 3
     },
     {
-        src: "https://source.unsplash.com/epcsn8Ed8kY/300x300",
-        title: "Bill of Lading 2",
+        src: "https://media.giphy.com/media/l46CpEQZ8G9M7OP0k/giphy.gif",
+        type: "happy-bulldog",
+        title: "Happy bulldog",
         position: 4
     },
   ];
