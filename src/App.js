@@ -46,6 +46,7 @@ function App() {
   const hideToast = () => {
     toastTimeoutId = setTimeout(() => {
       setIsSaving(false);
+      setLastSaved(getCurrentTime);
     }, 2000)
   }
 
@@ -75,7 +76,6 @@ function App() {
       postData('/setData', items).then((data) => {
         if(data.status === 'Success') {
           hideToast();
-          setLastSaved(getCurrentTime);
         }
       })
     }
