@@ -18,13 +18,13 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Install
-        run:  yarn
+        run:  npm install
         
       - name: Setup MSW
-        run:  yarn msw init public/ --save
+        run:  npx msw init public/ --save
         
       - name: Build
-        run: yarn build
+        run: npm run build
         
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
