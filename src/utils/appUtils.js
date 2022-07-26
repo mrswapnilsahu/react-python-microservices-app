@@ -1,4 +1,3 @@
-
 /**
  * Moves the item to a new position in the new array
  * @param {*} items The array with the item to move
@@ -7,11 +6,11 @@
  * @returns items
  */
  export const swapElement = (items, from, to) => {
-    const temp = items[from];
-    items[from] = items[to];
-    items[to] = temp;
-    return items;
-}
+  const temp = items[from];
+  items[from] = items[to];
+  items[to] = temp;
+  return items;
+};
 
 /**
  * Change the item position to a new position
@@ -21,24 +20,24 @@
  * @returns items
  */
 export const updatePosition = (items, fromPosition, toPosition) => {
-    const temp = {...items[fromPosition]};
-    items[fromPosition].position = items[toPosition].position;
-    items[toPosition].position = temp.position;
-    return items;
-}
+  const temp = { ...items[fromPosition] };
+  items[fromPosition].position = items[toPosition].position;
+  items[toPosition].position = temp.position;
+  return items;
+};
 
 /**
  * Compare two objects and return boolean
  * @param {*} obj1 object you want to compare
  * @param {*} obj2 object you want to compare with
- * @returns {boolean}
+ * @returns {boolean} true if the objects are not equal
  */
 export const compareObjects = (obj1, obj2) => {
-  if((obj1 && obj1.length) && (obj2 && obj2.length)) {
+  if (obj1 && obj1.length && obj2 && obj2.length) {
     return JSON.stringify(obj1) !== JSON.stringify(obj2);
-  } 
+  }
   return false;
-}
+};
 
 /**
  * Async function to post data
@@ -46,13 +45,23 @@ export const compareObjects = (obj1, obj2) => {
  * @param {object} data object you want to send with the req
  * @returns {JSON} object object with response from the server
  */
-export async function postData(url = '', data = {}) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    return response.json();
+export async function postData(url = "", data = {}) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
 }
+
+/**
+ * Below function will return current time in hours and minutes
+ *  @returns {string} current time string
+ */
+export const getCurrentTime = () => {
+  const now = new Date();
+  const current = now.getHours() + ":" + now.getMinutes();
+  return current;
+};

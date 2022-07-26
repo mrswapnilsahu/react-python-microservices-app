@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-import Gallery from "./components/Gallery";
-import Modal from './components/Modal';
-import Toast from './components/Toast';
+import { Gallery, Modal, Toast } from "./components";
 
 import { SortableContainer } from "react-sortable-hoc";
-import { compareObjects, swapElement, updatePosition, postData } from "./utils/appUtils";
+import {
+  compareObjects,
+  swapElement,
+  updatePosition,
+  postData,
+  getCurrentTime,
+} from "./utils/appUtils";
 import { useFetch } from "./hooks/useFetch";
 
-
 function App() {
-
   // Fetching the data from REST API
-  const { data, isPending } = useFetch('/getData');
+  const { data, isPending } = useFetch("/getData");
 
   // Below state will hold the data
   const [items, setItems] = useState([]);
@@ -25,12 +27,12 @@ function App() {
 
   const [isSaving, setIsSaving] = useState(false);
 
-  const [lastSaved, setLastSaved] = useState();
+  const [lastSaved, setLastSaved] = useState("");
 
   /**
    * Variable to store setTimeout ID so, that we can
-   * clear it at the time of unmounting 
-   */ 
+   * clear it at the time of unmounting
+   */
   let toastTimeoutId = null;
 
   useEffect(() => {
@@ -40,44 +42,35 @@ function App() {
     return () => {
       clearInterval(intervalId);
       clearTimeout(toastTimeoutId);
-    }
-  },[data])
+    };
+  }, [data]);
 
   const hideToast = () => {
     toastTimeoutId = setTimeout(() => {
       setIsSaving(false);
       setLastSaved(getCurrentTime);
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   /**
-   * Below function will return current time in hours and minutes
-   *  
+   * Below function will run in every 5 seconds
+   * and send request to setData REST API with the
+   * updated data only if the data is changed
    */
-  const getCurrentTime = () => {
-    const now = new Date();
-    const current = now.getHours() + ':' + now.getMinutes();
-    return current;
-  }
-
-  /**
-  * Below function will run in every 5 seconds
-  * and send request to setData REST API with the 
-  * updated data only if the data is changed
-  */
   const intervalId = setInterval(() => {
-    const savedData = localStorage.getItem('data') && JSON.parse(localStorage.getItem('data'));
+    const savedData =
+      localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
     /* if both the data i.e, local storage data and
      state data are not equal then it will send the request 
      to the API
     */
     if (compareObjects(items, savedData)) {
       setIsSaving(true);
-      postData('/setData', items).then((data) => {
-        if(data.status === 'Success') {
+      postData("/setData", items).then((data) => {
+        if (data.status === "Success") {
           hideToast();
         }
-      })
+      });
     }
   }, 5000);
 
@@ -89,22 +82,37 @@ function App() {
   ));
 
   /**
-   * This method will rearrange the items after changing the photos order 
+   * This method will rearrange the items after changing the photos order
    */
   const onChangeOrder = ({ oldIndex, newIndex }) =>
-    setItems(swapElement(items, oldIndex, newIndex), updatePosition(items, oldIndex, newIndex));
+    setItems(
+      swapElement(items, oldIndex, newIndex),
+      updatePosition(items, oldIndex, newIndex)
+    );
 
   return (
     <div className="App">
       <h1>Sortable gallery</h1>
       <div className="sortable-gallery">
-        {isPending ? "Loading..." :
+        {isPending ? (
+          "Loading..."
+        ) : (
           <div className="gallery-container">
-            <SortableGallery pressDelay={100} items={items} onSortEnd={onChangeOrder} axis={"xy"} />
+            <SortableGallery
+              pressDelay={100}
+              items={items}
+              onSortEnd={onChangeOrder}
+              axis={"xy"}
+            />
           </div>
-        }
-        {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
-        {isSaving && <Toast toastMsg="Saving..." lastSaved={lastSaved}/>}
+        )}
+        {selectedImage && (
+          <Modal
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+          />
+        )}
+        {isSaving && <Toast toastMsg="Saving..." lastSaved={lastSaved} />}
       </div>
     </div>
   );

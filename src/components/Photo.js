@@ -1,15 +1,32 @@
 import { useState } from "react";
 
-export default function Photo({ item, setSelectedImage }) {
-    const [isLoading, setIsLoading] = useState(true);
+/**
+ * Photo/Image component for displaying images
+ * @param {object} item 
+ * @param {method} setSelectedImage
+ * 
+ */
+export const Photo = ({ item, setSelectedImage }) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-    const handleImageClick = (src) => {
-        setSelectedImage(src);
-    }
+  const handleImageClick = (src) => {
+    setSelectedImage(src);
+  };
 
-    return <div className="image-card">
-        <p className="image-title">{item.title}</p>
-        <img src={item.src} alt={item.title} onLoad={() => setIsLoading(false)} onClick={() => handleImageClick(item.src)}/>
-        {isLoading && <span className="spinner"></span>}
+  const changeLoadState = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="image-card">
+      <p className="image-title">{item.title}</p>
+      <img
+        src={item.src}
+        alt={item.title}
+        onLoad={changeLoadState}
+        onClick={() => handleImageClick(item.src)}
+      />
+      {isLoading && <span className="spinner"></span>}
     </div>
-}
+  );
+};
