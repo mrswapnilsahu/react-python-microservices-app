@@ -80,6 +80,8 @@ For update and delete API we need a unique value like **ID** in the data with wh
 }
 ```
 
+`/addData` will be the endpoint which will add the new data and in the request we will send the new data we want to add.
+
 `/updateData` will be the endpoint which will update the existing data using the **ID** and in the request we will send the **ID** of the record we want to update and the updated data.
 
 `/deleteData` will be the endpoint which will delete the record using **ID** and in the request we will send the **ID** of the record we want to delete.
