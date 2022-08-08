@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import { Gallery, Modal, Toast } from "./components";
+import { useFetch, useInterval } from "./hooks";
 
 import { SortableContainer } from "react-sortable-hoc";
 import {
@@ -11,14 +12,16 @@ import {
   postData,
   getCurrentTime,
 } from "./utils/appUtils";
-import { useFetch } from "./hooks/useFetch";
 
 function App() {
   // Fetching the data from REST API
-  const { data, isPending } = useFetch("/getData");
+  const { data, isPending } = useFetch("/api/entries");
 
   // Below state will hold the data
   const [items, setItems] = useState([]);
+
+  // Below state will hold initial data
+  const [initialData, setInitialData] = useState([]);
 
   /**
    * Below state will hold the selected photo for modal
@@ -36,15 +39,20 @@ function App() {
   let toastTimeoutId = null;
 
   useEffect(() => {
-    setItems(data);
+    setItems(structuredClone(data));
+    setInitialData(structuredClone(data));
     setLastSaved(getCurrentTime);
     // Cleanup function to clear the timeout interval
     return () => {
-      clearInterval(intervalId);
+      // clearInterval(intervalId);
       clearTimeout(toastTimeoutId);
     };
   }, [data]);
 
+  /**
+   * Below function will hide the toast in 2s
+   * and update the last saved time
+   */
   const hideToast = () => {
     toastTimeoutId = setTimeout(() => {
       setIsSaving(false);
@@ -57,20 +65,24 @@ function App() {
    * and send request to setData REST API with the
    * updated data only if the data is changed
    */
-  const intervalId = setInterval(() => {
-    const savedData =
-      localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
-    /* if both the data i.e, local storage data and
-     state data are not equal then it will send the request 
-     to the API
-    */
-    if (compareObjects(items, savedData)) {
-      setIsSaving(true);
-      postData("/setData", items).then((data) => {
-        if (data.status === "Success") {
-          hideToast();
-        }
-      });
+  useInterval(() => {
+    if(items && initialData) {
+
+      /* if both the data i.e, local storage data and
+      state data are not equal then it will send the request 
+      to the API
+      */
+     if (compareObjects(items, initialData)) {
+        console.log(items, initialData)
+        setIsSaving(true);
+        console.log("whyyhyh")
+        setInitialData(items);
+        postData("/api/update", items, "PUT").then((data) => {
+          if (data.status === "Success") {
+            hideToast();
+          }
+        });
+      }
     }
   }, 5000);
 

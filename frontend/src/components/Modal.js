@@ -22,7 +22,7 @@ export const Modal = ({ setSelectedImage, selectedImage }) => {
    * Below function will close the modal
    * when ESC key is pressed
    */
-  useEffect(() => {
+  useEffect((setSelectedImage) => {
     const closeModal = (e) => {
       if (e.keyCode === 27) {
         setSelectedImage(null);

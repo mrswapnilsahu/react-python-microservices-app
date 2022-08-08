@@ -1,8 +1,41 @@
 version: '3.8'
 services:
-  react-app:
-    build: ./
-    container_name: react-sortable-gallery-app_c
+  db:
+    image: postgres
+    restart:  always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: board_db
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_USER=postgres   
+      - DB_PASSWORD=postgres
+      - DB_PORT=5432
+      - DB_HOST=db
+      - DB_NAME=board_db
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
     ports: 
       - '3000:3000'
     stdin_open: true

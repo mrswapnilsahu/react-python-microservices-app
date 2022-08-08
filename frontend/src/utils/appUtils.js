@@ -43,11 +43,12 @@ export const compareObjects = (obj1, obj2) => {
  * Async function to post data
  * @param {string} url url you want to send request to
  * @param {object} data object you want to send with the req
- * @returns {JSON} object object with response from the server
+ * @param {string} method by default it will be POST  
+ * @returns {JSON} object with response from the server
  */
-export async function postData(url = "", data = {}) {
+export async function postData(url = "", data = {}, method = "POST") {
   const response = await fetch(url, {
-    method: "POST",
+    method,
     headers: {
       "Content-Type": "application/json",
     },
