@@ -15,6 +15,3 @@ def generate_DB_url():
     
     return url
 
-def generate_response():
-    return None
-

@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     setItems(structuredClone(data));
-    setInitialData(structuredClone(data));
+    setInitialData(data);
     setLastSaved(getCurrentTime);
     // Cleanup function to clear the timeout interval
     return () => {
@@ -73,10 +73,8 @@ function App() {
       to the API
       */
      if (compareObjects(items, initialData)) {
-        console.log(items, initialData)
         setIsSaving(true);
-        console.log("whyyhyh")
-        setInitialData(items);
+        setInitialData(structuredClone(items));
         postData("/api/update", items, "PUT").then((data) => {
           if (data.status === "Success") {
             hideToast();
