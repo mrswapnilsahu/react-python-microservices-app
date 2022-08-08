@@ -21,25 +21,17 @@ In the project directory, you can run:
 **Using docker**
 
 ``` bash
-docker compose up
+docker-compose up --build --remove-orphans
 ```
+
+`Info: Above command will build the docker image and start the application.`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-
+You can also view the **Open API Spec** for this app [here](http://127.0.0.1:8000/docs)
 
 ## API Design
-
-For delete API we need a unique value like **ID** in the data with which we can identify the record we want to delete.
-
-`/api/entries` endpoint to fetch the all the data from PostgreSQL DB sorted by position.
-
-`/api/create` will be the endpoint which will add the new data and in the request we will send the new data we want to add to DB.
-
-`/api/update` will be the endpoint which will update the existing data in DB and in the request we will send the data we want to update.
-
-`/api/delete/{id}` will be the endpoint which will delete the record using **ID** and in the request we will send the **ID** of the record we want to delete.
 
 ### UPDATED DATA FORMAT:
 ``` bash
@@ -52,3 +44,12 @@ For delete API we need a unique value like **ID** in the data with which we can 
 }
 ```
 
+For delete API we need a unique value like **ID** in the data with which we can identify the record we want to delete.
+
+`/api/entries` endpoint to fetch the all the data from PostgreSQL DB sorted by position.
+
+`/api/create` will be the endpoint which will add the new data and in the request we will send the new data we want to add to DB.
+
+`/api/update` will be the endpoint which will update the existing data in DB and in the request we will send the data we want to update.
+
+`/api/delete/{id}` will be the endpoint which will delete the record using **ID** and in the request we will send the **ID** of the record we want to delete.
