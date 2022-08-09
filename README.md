@@ -23,8 +23,15 @@ In the project directory, you can run:
 ``` bash
 docker-compose up --build --remove-orphans
 ```
-
 `Info: Above command will build the docker image and start the application.`
+
+If you don't want to clone the project but still want to run it then you can simply download the
+**docker-compose.yaml** file from this repository and run the following command.
+
+**Using docker image**
+``` bash
+docker-compose up
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

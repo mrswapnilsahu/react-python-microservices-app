@@ -19,6 +19,7 @@ services:
 
   backend:
     build: ./backend
+    image: swapnildev/backend
     ports:
       - '8000:8000'
     environment:
@@ -34,6 +35,7 @@ services:
     
   frontend:
     build: ./frontend
+    image: swapnildev/frontend
     depends_on:
       - backend
     ports: 
