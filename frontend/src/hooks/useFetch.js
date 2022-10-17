@@ -17,18 +17,18 @@ export const useFetch = (url) => {
   useEffect(() => {
     const abortCont = new AbortController();
     fetch(url, { signal: abortCont.signal })
-      .then((res) => {
+      .then(res => {
         if (!res.ok) {
-          //If any error occur while retrieving data from server
+          // If any error occur while retrieving data from server
           throw Error("Could not fetch data from server");
         }
         return res.json();
       })
-      .then((data) => {
+      .then(data => {
         setData(data);
         setIsPending(false);
       })
-      .catch((error) => {
+      .catch(error => {
         if (error.name === "AbortError") {
           console.log("Fetch aborted!");
         } else {
