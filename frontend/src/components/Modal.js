@@ -12,7 +12,7 @@ export const Modal = ({ setSelectedImage, selectedImage }) => {
    * Below function will close the modal
    * when we click on the black overlay/backdrop
    */
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.target.classList.contains("backdrop")) {
       setSelectedImage(null);
     }
@@ -22,8 +22,8 @@ export const Modal = ({ setSelectedImage, selectedImage }) => {
    * Below function will close the modal
    * when ESC key is pressed
    */
-  useEffect((setSelectedImage) => {
-    const closeModal = (e) => {
+  useEffect(setSelectedImage => {
+    const closeModal = e => {
       if (e.keyCode === 27) {
         setSelectedImage(null);
       }

@@ -8,22 +8,16 @@ import { SortableElement } from "react-sortable-hoc";
  */
 export const Gallery = (props) => {
   const { items, setSelectedImage } = props;
-  const SortablePhoto = SortableElement((item) => {
-    return <Photo setSelectedImage={setSelectedImage} {...item} />;
-  });
+  const SortablePhoto = SortableElement((item) => <Photo setSelectedImage={setSelectedImage} {...item} />);
   return (
     <ul>
       {items &&
-        items.map((element, i) => {
-          return (
-            <SortablePhoto
-              index={i}
-              sortIndex={element.position}
-              item={element}
-              key={`item-${i}`}
-            />
-          );
-        })}
+        items.map((element, i) => <SortablePhoto
+        index={i}
+        sortIndex={element.position}
+        item={element}
+        key={`item-${i}`}
+      />)}
     </ul>
   );
 };
