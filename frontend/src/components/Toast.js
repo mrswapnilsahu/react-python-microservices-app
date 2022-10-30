@@ -2,7 +2,6 @@
  * Reusable Toast component
  * @param {string} toastMsg msg you want to print in toast
  * @param {string} lastSaved last saved time
- * 
  */
 
  export const Toast = ({ toastMsg, lastSaved }) => {

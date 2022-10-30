@@ -9,13 +9,9 @@ import { useState } from "react";
 export const Photo = ({ item, setSelectedImage }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleImageClick = (src) => {
-    setSelectedImage(src);
-  };
+  const handleImageClick = src => setSelectedImage(src);
 
-  const changeLoadState = () => {
-    setIsLoading(false);
-  };
+  const changeLoadState = () => setIsLoading(false);
 
   return (
     <div className="image-card">
