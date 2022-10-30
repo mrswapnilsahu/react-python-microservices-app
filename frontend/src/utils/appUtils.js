@@ -36,7 +36,7 @@ export const compareObjects = (obj1, obj2) => {
   if (obj1 && obj1.length && obj2 && obj2.length) {
     return JSON.stringify(obj1) !== JSON.stringify(obj2);
   }
-  return false;
+  return;
 };
 
 /**
@@ -63,6 +63,5 @@ export async function postData(url = "", data = {}, method = "POST") {
  */
 export const getCurrentTime = () => {
   const now = new Date();
-  const current = now.getHours() + ":" + now.getMinutes();
-  return current;
+  return now.getHours() + ":" + now.getMinutes();
 };
